@@ -9,8 +9,8 @@ module.exports = (req, res) => {
     res.status(200).end();
     return;
   }
-  const { country, city } = req.body;
-  const url = `https://api.unsplash.com/photos/random?client_id=${process.env.UNSPLASH_ACC_KEY}&query=${city}&location=${city} ${country}&orientation=landscape`;
+  const { country, fullCountry, city } = req.body;
+  const url = `https://api.unsplash.com/photos/random?client_id=${process.env.UNSPLASH_ACC_KEY}&query=${fullCountry} ${city}&location=${fullCountry} ${city}&orientation=landscape`;
   fetch(url)
     .then((res) => {
       status = res.status;
