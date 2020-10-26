@@ -1,0 +1,7 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/api/index.js" },
+    { "source": "/weather", "destination": "/api/weather.js" },
+    { "source": "/unsplash", "destination": "/api/unsplash.js" }
+  ]
+}
