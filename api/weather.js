@@ -8,7 +8,7 @@ module.exports = (req, res) => {
     res.status(200).end();
     return;
   }
-  const { country, city } = req.body;
+  const { country, fullCountry, city } = req.body;
   const url = `http://api.openweathermap.org/data/2.5/weather?appid=${process.env.WEATHER_APIKEY}&q=${city}, ${country}`;
   fetch(url)
     .then((res) => {
