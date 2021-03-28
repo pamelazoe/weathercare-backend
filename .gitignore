@@ -117,3 +117,10 @@ dist
 .vercel
 
 test.js
+test2.js
+test3.js
+test4.js
+
+.env
+
+.DS_Store

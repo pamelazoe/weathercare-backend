@@ -1,7 +1,23 @@
 {
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Credentials", "value": "true" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "OPTIONS,POST,GET" },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
+        }
+      ]
+    }
+  ],
   "rewrites": [
     { "source": "/", "destination": "/api/index.js" },
     { "source": "/weather", "destination": "/api/weather.js" },
-    { "source": "/unsplash", "destination": "/api/unsplash.js" }
+    { "source": "/unsplash", "destination": "/api/unsplash.js" },
+    { "source": "/unsplashrandom", "destination": "/api/unsplashrandom.js" }
+
   ]
 }

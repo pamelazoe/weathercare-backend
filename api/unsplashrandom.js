@@ -20,11 +20,10 @@ module.exports = (req, res) => {
     return;
   }
   const queryObject = url.parse(req.url, true).query;
-  const { city, fullCountry, orientation } = queryObject;
+  const { orientation } = queryObject;
   console.log(queryObject);
-  const getImages = async (city, fullCountry, orientation) => {
-    const unsplashUrl = `https://api.unsplash.com/search/photos?client_id=952e8dbcdd684bc7495869e1bfcc2f8eed6f5a3615aecffbafa022acb71b987e&query=${fullCountry} ${city}&orientation=${orientation}&per_page=20`;
-    console.log(unsplashUrl);
+  const getImage = async (orientation) => {
+    const unsplashUrl = `https://api.unsplash.com/photos/random?client_id=${process.env.UNSPLASH_ACC_KEY}&query=landscape&orientation=${orientation}&per_page=20`;
     return fetch(unsplashUrl)
       .then((res) => {
         status = res.status;
@@ -36,18 +35,7 @@ module.exports = (req, res) => {
         return err;
       });
   };
-  const selectRandomItem = (data) => {
-    const { status } = data;
-    const image = data.results[Math.floor(Math.random() * data.results.length)];
-    return { ...image, status };
-  };
-  const getImageLink = async (city, fullCountry, orientation) => {
-    const getAllImages = await getImages(city, fullCountry, orientation);
-    const selectImage = await selectRandomItem(getAllImages);
-    const { status, description, urls, links, user, tags } = selectImage;
-    return selectImage;
-  };
-  getImageLink(city, fullCountry, orientation)
+  getImage(orientation)
     .then((data) => {
       console.log(data);
       res.status(status).send(data);
